@@ -1,0 +1,33 @@
+function [x, y, datenGeladen] = datenPunktWeise()
+
+    % Wenn wir unsere x und y Daten Punktweise angeben 
+    % liegen uns noch keine Daten vor 
+    datenGeladen = false;
+    x = [];
+    y = [];
+    
+    n = input('Wie viele Datenpaare möchten Sie eingeben? ');
+    
+    if n <= 0 || floor(n) ~= n
+        disp('Die Anzahl muss eine positive ganze Zahl sein.');
+        return;
+    end
+    
+    x = zeros(1, n);
+    y = zeros(1, n);
+    
+    for i = 1:n
+        fprintf('\nDatenpaar %d:\n', i);
+        x(i) = input('  x = ');
+        y(i) = input('  y = ');
+    end
+    
+    if datenPruefen(x, y)
+        datenGeladen = true;
+        disp('Daten wurden erfolgreich gespeichert.');
+    else
+        x = [];
+        y = [];
+        disp('Daten sind ungültig und wurden verworfen.');
+    end
+end
