@@ -7,7 +7,7 @@ function [gradHistory, yFitHistory] = regressionUntermenue(x, y, gradHistory, yF
     % while loop zur programm ausführung
     while true
 
-        fprintf('\n XXX Regressionsmenue XXX \n\n');
+        fprintf('\n  [[Regressionsmenue]]  \n\n');
 
         % print aktuelle Daten 
         fprintf(' \n Daten aktuell : \n');
@@ -58,6 +58,8 @@ function [gradHistory, yFitHistory] = regressionUntermenue(x, y, gradHistory, yF
                     plotRegression(x, y, yFit);
 
                     gradHistory(end + 1) = grad;
+
+                    % falls historie leer, dann direkt auf yFit setzen
                     if isempty(yFitHistory)
                         yFitHistory = yFit(:);
                     else
@@ -66,6 +68,8 @@ function [gradHistory, yFitHistory] = regressionUntermenue(x, y, gradHistory, yF
                 end
 
             case 'B'
+
+                % Fall 2 : User möchte beste Grad automatisch bestimmen
 
                 [grad, koeffizienten, yFit, fehlerQuadratisch] = optimalenGradFinden(x, y);
 
@@ -76,6 +80,8 @@ function [gradHistory, yFitHistory] = regressionUntermenue(x, y, gradHistory, yF
                 plotRegression(x, y, yFit);
 
                 gradHistory(end + 1) = grad;
+
+                % falls historie leer, dann direkt auf yFit setzen
                 if isempty(yFitHistory)
                     yFitHistory = yFit(:);
                 else
@@ -107,11 +113,14 @@ function [besterGrad, besteKoeffizienten, bestesYFit, besterFehler] = optimalenG
     % wir definierenden maximalen grad
     maxGrad = length(x) - 2;
     besterGrad = 0;
+
+    % damit der erste grad automatisch direkt best grad ist.
+    % fehler au inf setzen
     besterFehler = inf;
     besteKoeffizienten = [];
     bestesYFit = [];
 
-    % wir iterieren von0 bis maximalen Grad 
+    % wir iterieren von 0 bis maximalen Grad 
     % für jeden Grad berechnen wir die Regression und den Fehler
     % falls fehler kleiner als der aktuelle error -> update variables
     for grad = 0:maxGrad

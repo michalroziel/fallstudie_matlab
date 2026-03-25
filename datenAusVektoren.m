@@ -8,13 +8,14 @@ function [x, y, datenGeladen] = datenAusVektoren()
 
     % Frage den benutzer nach Vektoren
     
-    nameX = input('Name des x-Vektors: ', 's');
-    nameY = input('Name des y-Vektors: ', 's');
+    nameX = input(' Name des x-Vektors: ', 's');
+    nameY = input(' Name des y-Vektors: ', 's');
 
     % suche im base workspace nach nameX für X Vektor 
     % und nameY für Y Vektor 
     
     % zuerst pruefen wir, ob beide Namen im base workspace existieren
+    % https://de.mathworks.com/help/matlab/ref/evalin.html
     try
         x = evalin('base', nameX);
         y = evalin('base', nameY);

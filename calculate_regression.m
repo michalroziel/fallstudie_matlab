@@ -42,6 +42,7 @@ function [koeffizienten, yFit, fehlerQuadratisch] = calculate_regression(x, y, g
 
     % length(x) - Anzah der Datenpunkte
     % grad + 1  - Anzahl der Koeffizienten des Polynom 
+    % -> Jede Zeile gehört zu einem Datenpunkt
     A = zeros(length(x), grad + 1);
 
     % wir füllen die matrix für alle Datenpunkte bis zum gewählten grad 
@@ -62,10 +63,17 @@ function [koeffizienten, yFit, fehlerQuadratisch] = calculate_regression(x, y, g
 
     % Jetzt können wir die Koeffizienten mit dem \ operator berechnen
     % mit \ wird die lineare Gleichung A * koeffizienten = y gelöst
+    % Der eigentliche Regressionsschritt
+    %Die berechneten Polynomwerte möglichst gut  zu Daten y passen.
+
+    % Es werden die koeffizienten gewählt wo der quadratische Fehler am kleinsten ist.
     koeffizienten = A \ y;
+
+    % ! Da es oftmals keine perfekt Lösung gibt, ist \ die Least-squares solution
 
 
     % Berechnung der Werte des angepassten Polynom für die gegebenen x-Werte
+    % yFit -> Werte des Regressionspolynoms 
     yFit = A * koeffizienten;
 
     % ordinary least squares Fehler : Summe der quadrierten fehler 
@@ -75,3 +83,12 @@ function [koeffizienten, yFit, fehlerQuadratisch] = calculate_regression(x, y, g
 
 
 end
+
+
+% beispiel regression : 
+%x = [1;2;3;4]
+%A =
+%     1     1     1
+%     4     2     1
+%     9     3     1
+%    16     4     1

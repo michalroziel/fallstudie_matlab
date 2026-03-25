@@ -8,7 +8,7 @@ function [x, y, datenGeladen] = datenPunktWeise()
     x = [];
     y = [];
     
-    n = input('Wie viele Datenpaare sollen Eingegeben werden?');
+    n = input( 'Wie viele Datenpaare sollen Eingegeben werden?' );
     
     % Eingabe muss eine ganze, positive Zahl > 0 sein
     % isempty und isscalar verhindern Fehler bei leerer oder mehrfacher Eingabe
@@ -22,7 +22,7 @@ function [x, y, datenGeladen] = datenPunktWeise()
     
     % Printe zum Visualisieren alle Datenpaare nacheinander
     for i = 1:n
-        fprintf('\nDatenpaar %d:\n', i);
+        fprintf(' \n Datenpaar %d: \n ', i);
         x(i) = input('  x = ');
         y(i) = input('  y = ');
     end

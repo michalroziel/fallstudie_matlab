@@ -2,7 +2,7 @@ function lineare_reg_start()
     
     % die Konsole und die Variablen in dem Workspace clearen.
     clc;
-    clear;
+   % clear;
     
     x = [];
     y = [];
@@ -19,13 +19,15 @@ function lineare_reg_start()
     % while(1) Schleife um das Programm nutzen zu können
     while true
 
-        fprintf('\n XXX Lineare Regression - Main Menu XXX \n\n');
+        fprintf('\n Lineare Regression - Main Menu \n\n');
         fprintf('A - Daten punktweise eingeben \n');
         fprintf('B - Daten aus vorhandenen Vektoren laden \n');
         fprintf('C - Mit bereits geladenen Daten weiterarbeiten \n');
         fprintf('D - Programm beenden \n');
         
         wahl = input(' \nBitte waehlen Sie eine Option: ' , 's');
+
+        % strtrim - trim string
         wahl = upper(strtrim(wahl));
         
         % wir machen eine fall unterscheidung über die Eingabe
